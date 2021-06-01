@@ -16,16 +16,18 @@ Build a streamlined and easy to use workflow for reporting expressed variants fr
 
 ## Introduction 
 
+We use the CTAT-Mutation pipeline will be used to call expresseed variants from RNAseq data. The CTAT-Mutation pipeline (https://github.com/NCIP/ctat-mutations/wiki) makes it easy to discover variants from RNA-seq data, and requires only the RNA-seq reads as input. The pipeline also annotates variants, including the RADAR and RediPortal databases for identifying likely RNA-editing events, dbSNP and gnomAD for annotating common variants, COSMIC to highlight known cancer mutations, and OpenCRAVAT to annotate and prioritize variants according to likely biological impact and relevance to cancer. The CTAT-Mutations Pipeline integrates GATK Best Practices along with downstream steps to annotate and filter variants, and to additionally prioritize variants that may be relevant to cancer biology. 
+
 
 ## Installation 
 
 
 ## Methods
-- Choice of Test data
-- Variant Calling and Annotation Pipeline
-- Gene expression analysis
-- Identification of variants with clinical relevance
-- Visualization of data
+1. Obtain high quality test data
+1. Construct the variant calling and annotation pipeline
+1. Construct the gene expression analysis pipeline 
+1. Document the pipeline thoroughly 
+1. Construct output file for OMOP group
 
 ### Implementation
 
