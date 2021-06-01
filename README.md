@@ -31,13 +31,12 @@ Build a streamlined and easy to use workflow for reporting expressed variants fr
 
 ### Implementation
 
-
-### Workflow
-- Inputs 
--Outputs 
+Inputs 
+Outputs 
 
 ## Operation 
 
+## Flowchart
 
 ## Results 
 
