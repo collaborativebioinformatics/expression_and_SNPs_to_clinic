@@ -21,6 +21,7 @@ Build a streamlined and easy to use workflow for reporting expressed variants fr
 
 ## Installation 
 
+
 ## Methods
 - Test data
 - Variant Calling and Annotation
@@ -31,11 +32,15 @@ Build a streamlined and easy to use workflow for reporting expressed variants fr
 ### Implementation
 
 
-### Inputs 
-### Outputs 
+### Workflow
+- Inputs 
+-Outputs 
 
 ## Operation 
 
+
 ## Results 
 
+
 ## References 
+
