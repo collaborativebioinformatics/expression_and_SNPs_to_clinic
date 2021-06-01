@@ -13,8 +13,6 @@ Smooth transition of called variants from RNAseq and expression to the clinic
 ## Goal 
 Build a streamlined and easy to use workflow for reporting expressed variants from RNAseq to the clinic
 
-### Flowchart 
-
 
 ## Introduction 
 
@@ -37,6 +35,8 @@ Outputs
 ## Operation 
 
 ## Flowchart
+<img width="448" alt="flowchart" src="https://user-images.githubusercontent.com/5508556/120391842-a1ae4800-c2fd-11eb-92fe-06baed291a44.png">
+Flowchart of the pipeline
 
 ## Results 
 
