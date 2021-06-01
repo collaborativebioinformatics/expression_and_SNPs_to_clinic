@@ -15,12 +15,22 @@ Build a streamlined and easy to use workflow for expressed variants from RNAseq 
 
 ### Flowchart 
 
+
 ## Introduction 
+
 
 ## Installation 
 
 ## Methods
+- Test data
+- Variant Calling and Annotation
+- Gene expression analysis
+- Identification of variants with clinical impact
+- 
+
 ### Implementation
+
+
 ### Inputs 
 ### Outputs 
 
