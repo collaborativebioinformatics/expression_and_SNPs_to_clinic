@@ -23,8 +23,8 @@ Build a streamlined and easy to use workflow for reporting expressed variants fr
 
 
 ## Methods
-- Test data
-- Variant Calling and Annotation
+- Choice of Test data
+- Variant Calling and Annotation Pipeline
 - Gene expression analysis
 - Identification of variants with clinical relevance
 - Visualization of data
