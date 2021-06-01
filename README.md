@@ -11,7 +11,8 @@ Smooth transition of called variants from RNAseq and expression to the clinic
 - Kym Pagel 
 
 ## Goal 
-testing...
+Build a streamlined and easy to use workflow for expressed variants from RNAseq to the clinic
+
 ### Flowchart 
 
 ## Introduction 
