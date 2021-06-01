@@ -29,8 +29,21 @@ Build a streamlined and easy to use workflow for reporting expressed variants fr
 
 ### Implementation
 
-Inputs 
-Outputs 
+#### Inputs 
+
+
+#### Outputs 
+
+A TSV-delimited file per sample. Each line describes one variant, including the following fields: 
+- Variant HGVS expression 
+- Hugo gene identifier 
+- Variant sequence ontology consequence
+- ClinVar annotation
+- COSMIC annotation 
+- Variant zygosity 
+- Gene-level differential expression value
+- Source (DNA,RNA,Both)
+- Source identifier / Tissue origin, if relevant 
 
 ## Operation 
 
