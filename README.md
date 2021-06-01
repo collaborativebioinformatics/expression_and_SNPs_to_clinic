@@ -11,7 +11,7 @@ Smooth transition of called variants from RNAseq and expression to the clinic
 - Kym Pagel 
 
 ## Goal 
-Build a streamlined and easy to use workflow for expressed variants from RNAseq to the clinic
+Build a streamlined and easy to use workflow for reporting expressed variants from RNAseq to the clinic
 
 ### Flowchart 
 
@@ -25,8 +25,8 @@ Build a streamlined and easy to use workflow for expressed variants from RNAseq 
 - Test data
 - Variant Calling and Annotation
 - Gene expression analysis
-- Identification of variants with clinical impact
-- 
+- Identification of variants with clinical relevance
+- Visualization of data
 
 ### Implementation
 
