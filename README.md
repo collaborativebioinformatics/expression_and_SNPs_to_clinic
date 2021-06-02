@@ -44,22 +44,51 @@ We've identified a study archived in the Gene Expression Omnibus (Geo Accession:
 
 #### Inputs 
 
-DNAseq workflow:
+DNAseq Workflow:
 
-BWA-MEM
-- DNAseq fastq file
-- - Reference genome
+BWA FASTA indexer:
+- Reference FASTA file (UCSC hg19)
+-
+BWA-MEM FASTQ:
+- DNA paired end fastq files
+- BWA FASTA index file 
 
-GATK:
+Exome GATK lite pipeline:
+- Sorted BAM file
 
-RNAseq workflow:
+Outputs:
+-gzipped VCF file with the called variants
+-Variants indexed file
 
-Trinity CTAT:
+OpenCRAVAT
+- 
+
+
+
+----------//-------------//---------------------
+
+RNAseq Workflow:
+
+I. Trinity CTAT:
 - RNAseq fastq file
 - Reference genome
 
-DESeq2:
+
+OpenCRAVAT
+
+
+
+II. DESeq2:
 - RNAseq fastq file
+
+
+ViraVate2
+
+
+
+CombineR
+
+
 
 #### Outputs 
 
