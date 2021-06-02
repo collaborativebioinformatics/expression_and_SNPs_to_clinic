@@ -57,8 +57,8 @@ Exome GATK lite pipeline:
 - Sorted BAM file
 
 Outputs:
--gzipped VCF file with the called variants
--Variants indexed file
+- gzipped VCF file with the called variants
+- Variants indexed file
 
 
 
