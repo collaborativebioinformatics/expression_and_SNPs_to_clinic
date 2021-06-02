@@ -48,7 +48,7 @@ DNAseq Workflow:
 
 BWA FASTA indexer:
 - Reference FASTA file (UCSC hg19)
--
+
 BWA-MEM FASTQ:
 - DNA paired end fastq files
 - BWA FASTA index file 
@@ -61,7 +61,7 @@ Outputs:
 -Variants indexed file
 
 OpenCRAVAT
-- 
+-
 
 
 
