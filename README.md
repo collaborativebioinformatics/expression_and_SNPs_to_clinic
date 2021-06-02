@@ -36,13 +36,13 @@ We will then use the GATK Best Practices pipeline to call variants from DNAseq. 
 #### Inputs 
 
 GATK:
-DNAseq fastq file
-Reference genome
+- DNAseq fastq file
+- Reference genome
 
 
 Trinity CTAT:
-RNAseq fastq file
-Reference genome
+- RNAseq fastq file
+- Reference genome
 
 
 Dseq2:
