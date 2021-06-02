@@ -46,7 +46,7 @@ Trinity CTAT:
 
 
 Dseq2:
-RNAseq fastq file
+- RNAseq fastq file
 
 #### Outputs 
 
