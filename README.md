@@ -3,12 +3,12 @@ Smooth transition of called variants from RNAseq/DNAseq and expression to the cl
 
 ## Contributors 
 
-Jyoti Kataria - Sysadmin 
-Amit Yadav - Sysadmin 
-Adam Pater Faranda - Data Guru, Tech support 
-Katarina - Data Guru 
-Varuna Chander - Writer, Tech support 
-Kym Pagel - Lead, Liaison 
+- Jyoti Kataria - Sysadmin 
+- Amit Yadav - Sysadmin 
+- Adam Pater Faranda - Data Guru, Tech support 
+- Katarina - Data Guru 
+- Varuna Chander - Writer, Tech support 
+- Kym Pagel - Lead, Liaison 
 
 ## Goal 
 Build a streamlined and easy to use workflow for reporting expressed variants from RNAseq to the clinic. 
