@@ -61,3 +61,10 @@ Flowchart of the pipeline
 
 ## References 
 
+- Data ??? 
+- CTAT pipeline https://github.com/NCIP/ctat-mutations/wiki 
+- OpenCRAVAT https://www.cancergeneticsjournal.org/article/S2210-7762(20)30193-9/pdf 
+- GATK Best Practices https://gatk.broadinstitute.org/hc/en-us/sections/360007226651-Best-Practices-Workflows 
+- DSeq2 https://bioconductor.org/packages/release/bioc/html/DESeq2.html 
+- ViraVate https://github.com/collaborativebioinformatics/Differential_Expression_and_Variant_Association 
+- DNANexus documentation https://documentation.dnanexus.com/developer/apps/execution-environment/connecting-to-jobs 
