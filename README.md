@@ -107,7 +107,7 @@ A TSV-delimited file per sample. Each line describes one variant, including the 
 
 
 ## Flowchart
-<img width="344" alt="flowchart" src="https://user-images.githubusercontent.com/5508556/120530445-8568e480-c3ab-11eb-9ccb-ab0d96ad88ea.png">
+<img width="303" alt="Screen Shot 2021-06-02 at 6 24 51 PM" src="https://user-images.githubusercontent.com/5508556/120559925-e4d8eb80-c3cf-11eb-9d36-835f990482f2.png">
 Flowchart of the pipeline
 
 ## Results 
