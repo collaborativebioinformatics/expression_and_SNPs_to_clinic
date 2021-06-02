@@ -60,8 +60,6 @@ Outputs:
 -gzipped VCF file with the called variants
 -Variants indexed file
 
-OpenCRAVAT
--
 
 
 
