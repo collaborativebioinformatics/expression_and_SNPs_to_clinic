@@ -42,26 +42,40 @@ We've identified a study archived in the Gene Expression Omnibus (Geo Accession:
 
 ### Implementation 
 
+
+
 #### Inputs 
 
 DNAseq Workflow:
 
-BWA FASTA indexer:
-- Reference FASTA file (UCSC hg19)
+BWA FASTA indexer: Indexes a FASTA reference genome sequence for downstream use by the BWA-backtrack and BWA-MEM mapping apps.
+Input: Reference FASTA file (UCSC hg19)
+Output:BWA FASTA index file 
 
-BWA-MEM FASTQ:
+BWA-MEM mapping: Maps FASTQ (paired or unpaired reads) to reference genome using BWA-MEM algorithm.
+
+Inputs:
 - DNA paired end fastq files
 - BWA FASTA index file 
-
-Exome GATK lite pipeline:
+Outputs: 
 - Sorted BAM file
+- Index BAM file
+
+
+Exome GATK lite pipeline: Deduplicates, realigns and recalibrates base quality scores, and calls SNPs and indels in the human exome. Runs the following software from the Picard 1.104 and GATK-lite v2.3 suite of tools:
+- Picard MarkDuplicates
+- GATK-lite RealignerTargetCreator (if configured to do realignment around novel indels)
+- GATK-lite IndelRealigner
+- GATK-lite BaseRecalibrator
+- GATK-lite PrintReads
+- GATK-lite UnifiedGenotyper
+
+Input:
+- Requires a sorted BAM file.
 
 Outputs:
 - gzipped VCF file with the called variants
 - Variants indexed file
-
-
-
 
 ----------//-------------//---------------------
 
