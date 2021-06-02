@@ -44,6 +44,8 @@ We've identified a study archived in the Gene Expression Omnibus (Geo Accession:
 
 #### Inputs 
 
+##DNAseq workflow:
+
 GATK:
 - DNAseq fastq file
 - Reference genome
@@ -53,6 +55,8 @@ Trinity CTAT:
 - RNAseq fastq file
 - Reference genome
 
+
+##RNAseq workflow:
 
 DESeq2:
 - RNAseq fastq file
