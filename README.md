@@ -74,7 +74,7 @@ A TSV-delimited file per sample. Each line describes one variant, including the 
 
 
 ## Flowchart
-<img width="448" alt="flowchart" src="https://user-images.githubusercontent.com/5508556/120391842-a1ae4800-c2fd-11eb-92fe-06baed291a44.png">
+<img width="344" alt="flowchart" src="https://user-images.githubusercontent.com/5508556/120530445-8568e480-c3ab-11eb-9ccb-ab0d96ad88ea.png">
 Flowchart of the pipeline
 
 ## Results 
