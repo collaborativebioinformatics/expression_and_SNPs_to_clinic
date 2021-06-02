@@ -28,8 +28,7 @@ In order to thoroughly evaluate this the pipeline we've identified several studi
 - the study provides a meaningful contrast for evaluating differential expression
 - reads are paired end.
 
-We've identified a study archived in the Gene Expression Omnibus (Geo Accession:GSE75935) that provides RNA Seq and DNA Seq data from human tissue samples collected from ovarian cancer patients. 
-
+We've identified a study archived in the Gene Expression Omnibus (Geo Accession:GSE75935) that provides RNA Seq and DNA Seq data from human tissue samples collected from ovarian cancer patients. The data includess three cancer patients, three tumor samples per patient from different sites, two normal tissue samples from two different patients, four cell lines.
 
 ## Installation 
 
@@ -83,7 +82,7 @@ Flowchart of the pipeline
 
 ## References 
 
-- Data: 
+- Data: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE75935 
 - CTAT pipeline https://github.com/NCIP/ctat-mutations/wiki 
 - OpenCRAVAT https://www.cancergeneticsjournal.org/article/S2210-7762(20)30193-9/pdf 
 - GATK Best Practices https://gatk.broadinstitute.org/hc/en-us/sections/360007226651-Best-Practices-Workflows 
