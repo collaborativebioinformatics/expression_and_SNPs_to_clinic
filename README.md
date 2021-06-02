@@ -25,11 +25,10 @@ We will then use the GATK Best Practices pipeline to call variants from DNAseq. 
 
 In order to thoroughly evaluate this the pipeline we've identified several studies that meet the following basic criteria
 - the study provides a matching DNA Sequencing and RNA Seqeuncing reads from same biological sample
-- the study provides a meaningful contrast for evaluating differentoal expression
+- the study provides a meaningful contrast for evaluating differential expression
 - reads are paired end.
 
-We've identified the following studies that meet this criteria:
-- GSE75390
+We've identified a study archived in the Gene Expression Omnibus (Geo Accession:GSE75935) that provides RNA Seq and DNA Seq data from human tissue samples collected from ovarian cancer patients. 
 
 
 ## Installation 
@@ -84,7 +83,7 @@ Flowchart of the pipeline
 
 ## References 
 
-- Data
+- Data: 
 - CTAT pipeline https://github.com/NCIP/ctat-mutations/wiki 
 - OpenCRAVAT https://www.cancergeneticsjournal.org/article/S2210-7762(20)30193-9/pdf 
 - GATK Best Practices https://gatk.broadinstitute.org/hc/en-us/sections/360007226651-Best-Practices-Workflows 
