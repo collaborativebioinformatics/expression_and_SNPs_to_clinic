@@ -48,7 +48,7 @@ Trinity CTAT:
 - Reference genome
 
 
-Dseq2:
+DESeq2:
 - RNAseq fastq file
 
 #### Outputs 
@@ -76,7 +76,8 @@ Flowchart of the pipeline
 
 ## References 
 
-- Data ??? 
+- Data
+  -  
 - CTAT pipeline https://github.com/NCIP/ctat-mutations/wiki 
 - OpenCRAVAT https://www.cancergeneticsjournal.org/article/S2210-7762(20)30193-9/pdf 
 - GATK Best Practices https://gatk.broadinstitute.org/hc/en-us/sections/360007226651-Best-Practices-Workflows 
