@@ -57,6 +57,7 @@ BWA-MEM mapping: Maps FASTQ (paired or unpaired reads) to reference genome using
 Inputs:
 - DNA paired end fastq files
 - BWA FASTA index file 
+
 Outputs: 
 - Sorted BAM file
 - Index BAM file
