@@ -30,7 +30,38 @@ In order to thoroughly evaluate this the pipeline we've identified several studi
 
 We've identified a study archived in the Gene Expression Omnibus (Geo Accession:GSE75935) that provides RNA Seq and DNA Seq data from human tissue samples collected from ovarian cancer patients. The data includess three cancer patients, three tumor samples per patient from different sites, two normal tissue samples from two different patients, four cell lines.
 
+| Run         |	AvgSpotLen	| LibrarySource	  | source_name	| patient_identifier |
+| --- | --- | --- | --- | --- |
+| SRR2989954	| 249	        | GENOMIC	        | Ovarian tumor	| 1 |
+| SRR2989955	| 249	        | GENOMIC	        | Peritoneum tumor	| 1 |
+| SRR2989956	| 249	        | GENOMIC	        | Lymph node tumor	| 1 | 
+| SRR2989957	| 249	        | GENOMIC	        | Ovarian tumor	| 2 |
+| SRR2989958	| 249	        | GENOMIC         |	Peritoneum tumor	| 2 |
+| SRR2989959	| 249	        | GENOMIC        	| Lymph node tumor	| 2 |
+| SRR2989960	| 209	        | GENOMIC	        | Ovarian tumor	| 3 |
+| SRR2989961	| 249	        | GENOMIC	        | Peritoneum tumor	| 3 |
+| SRR2989962	| 249	        | GENOMIC        	| Lymph node tumor	| 3 |
+| SRR2989963	| 199	        | GENOMIC	        | Normal ovary	| 1 |
+| SRR2989964	| 199	        | GENOMIC	        | Normal ovary	| 2 |
+| SRR2989969	| 96	        | TRANSCRIPTOMIC	| Ovarian tumor | 	1 |
+| SRR2989970	| 96	        | TRANSCRIPTOMIC	| Peritoneum tumor	| 1 |
+| SRR2989971	| 96        	| TRANSCRIPTOMIC	| Lymph node tumor	| 1 |
+| SRR2989972	| 96	        | TRANSCRIPTOMIC	| Ovarian tumor	| 2 |
+| SRR2989973	| 96	        | TRANSCRIPTOMIC	| Peritoneum tumor	| 2 |
+| SRR2989974	| 96	        | TRANSCRIPTOMIC	| Lymph node tumor	| 2 |
+| SRR2989975	| 96	        | TRANSCRIPTOMIC	| Ovarian tumor	| 3 |
+| SRR2989976	| 96        	| TRANSCRIPTOMIC	| Peritoneum tumor	| 3 |
+| SRR2989977	| 96        	| TRANSCRIPTOMIC	| Lymph node tumor	| 3 |
+
 ## Installation 
+
+To add the Trinity CTAT applet, use the following comamnd:
+java -jar dxWDL-v1.50.jar compile ctat_mutations_2pt5.wdl -project project-ID
+
+To add the OpenCRAVAT applet, use the following comamnd:
+java -jar dxWDL-v1.50.jar compile oc-run.wdl -project project-ID
+
+There are two separate DNA Nexus workflows for DNAseq and RNAseq processing. 
 
 
 ## Methods
@@ -42,65 +73,37 @@ We've identified a study archived in the Gene Expression Omnibus (Geo Accession:
 
 ### Implementation 
 
-
-
 #### Inputs 
 
-DNAseq Workflow:
+I. DNAseq Workflow:
 
-BWA FASTA indexer: Indexes a FASTA reference genome sequence for downstream use by the BWA-backtrack and BWA-MEM mapping apps.
+1. BWA FASTA indexer: Indexes a FASTA reference genome sequence for downstream use by the BWA-backtrack and BWA-MEM mapping apps.
 Input: Reference FASTA file (UCSC hg19)
 Output:BWA FASTA index file 
 
-BWA-MEM mapping: Maps FASTQ (paired or unpaired reads) to reference genome using BWA-MEM algorithm.
+1. BWA-MEM mapping: Maps FASTQ (paired or unpaired reads) to reference genome using BWA-MEM algorithm.
+Inputs: DNA paired end fastq files and BWA FASTA index file 
+Outputs: Sorted BAM file and Index BAM file
 
-Inputs:
-- DNA paired end fastq files
-- BWA FASTA index file 
-
-Outputs: 
-- Sorted BAM file
-- Index BAM file
-
-
-Exome GATK lite pipeline: Deduplicates, realigns and recalibrates base quality scores, and calls SNPs and indels in the human exome. Runs the following software from the Picard 1.104 and GATK-lite v2.3 suite of tools:
+1. Exome GATK lite pipeline: Deduplicates, realigns and recalibrates base quality scores, and calls SNPs and indels in the human exome. Runs the following software from the Picard 1.104 and GATK-lite v2.3 suite of tools:
 - Picard MarkDuplicates
 - GATK-lite RealignerTargetCreator (if configured to do realignment around novel indels)
 - GATK-lite IndelRealigner
 - GATK-lite BaseRecalibrator
 - GATK-lite PrintReads
 - GATK-lite UnifiedGenotyper
-
-Input:
-- Requires a sorted BAM file.
-
-Outputs:
-- gzipped VCF file with the called variants
-- Variants indexed file
+Input: A sorted BAM file.
+Outputs: gzipped VCF file with the called variants and Variants indexed file
 
 ----------//-------------//---------------------
 
-RNAseq Workflow:
-
-I. Trinity CTAT:
-- RNAseq fastq file
-- Reference genome
+II.  RNAseq Workflow:
+1. Trinity CTAT: RNAseq fastq file and Reference genome
+1. DESeq2: RNAseq fastq file
 
 
-OpenCRAVAT
-
-
-
-II. DESeq2:
-- RNAseq fastq file
-
-
-ViraVate2
-
-
-
-CombineR
-
+III.  CombineR
+- This is a custom script that is a work-in-progress
 
 
 #### Outputs 
@@ -120,11 +123,11 @@ A TSV-delimited file per sample. Each line describes one variant, including the 
 
 
 ## Flowchart
-<img width="303" alt="Screen Shot 2021-06-02 at 6 24 51 PM" src="https://user-images.githubusercontent.com/5508556/120559925-e4d8eb80-c3cf-11eb-9d36-835f990482f2.png">
+<img width="429" alt="flowchart_for_rupesh" src="https://user-images.githubusercontent.com/5508556/120688832-76e50080-c471-11eb-8cb3-baf033cd14b9.png">
 Flowchart of the pipeline
 
 ## Results 
-
+Still working on this! 
 
 ## References 
 
