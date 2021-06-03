@@ -72,8 +72,6 @@ java -jar dxWDL-v1.50.jar compile oc-run.wdl -project project-ID
 
 ### Implementation 
 
-
-
 #### Inputs 
 
 DNAseq Workflow:
@@ -84,13 +82,8 @@ Output:BWA FASTA index file
 
 BWA-MEM mapping: Maps FASTQ (paired or unpaired reads) to reference genome using BWA-MEM algorithm.
 
-Inputs:
-- DNA paired end fastq files
-- BWA FASTA index file 
-
-Outputs: 
-- Sorted BAM file
-- Index BAM file
+Inputs: DNA paired end fastq files and BWA FASTA index file 
+Outputs: Sorted BAM file and Index BAM file
 
 
 Exome GATK lite pipeline: Deduplicates, realigns and recalibrates base quality scores, and calls SNPs and indels in the human exome. Runs the following software from the Picard 1.104 and GATK-lite v2.3 suite of tools:
@@ -101,12 +94,8 @@ Exome GATK lite pipeline: Deduplicates, realigns and recalibrates base quality s
 - GATK-lite PrintReads
 - GATK-lite UnifiedGenotyper
 
-Input:
-- Requires a sorted BAM file.
-
-Outputs:
-- gzipped VCF file with the called variants
-- Variants indexed file
+Input: A sorted BAM file.
+Outputs: gzipped VCF file with the called variants and Variants indexed file
 
 ----------//-------------//---------------------
 
@@ -116,21 +105,12 @@ I. Trinity CTAT:
 - RNAseq fastq file
 - Reference genome
 
-
-OpenCRAVAT
-
-
-
 II. DESeq2:
 - RNAseq fastq file
 
 
-ViraVate2
-
-
-
-CombineR
-
+III.  CombineR
+- This is a custom script that is a work-in-progress
 
 
 #### Outputs 
@@ -154,7 +134,7 @@ A TSV-delimited file per sample. Each line describes one variant, including the 
 Flowchart of the pipeline
 
 ## Results 
-
+Still working on this! 
 
 ## References 
 
