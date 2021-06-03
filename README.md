@@ -58,9 +58,10 @@ We've identified a study archived in the Gene Expression Omnibus (Geo Accession:
 To add the Trinity CTAT applet, use the following comamnd:
 java -jar dxWDL-v1.50.jar compile ctat_mutations_2pt5.wdl -project project-ID
 
-
 To add the OpenCRAVAT applet, use the following comamnd:
 java -jar dxWDL-v1.50.jar compile oc-run.wdl -project project-ID
+
+There are two separate DNA Nexus workflows for DNAseq and RNAseq processing. 
 
 
 ## Methods
@@ -74,39 +75,31 @@ java -jar dxWDL-v1.50.jar compile oc-run.wdl -project project-ID
 
 #### Inputs 
 
-DNAseq Workflow:
+I. DNAseq Workflow:
 
-BWA FASTA indexer: Indexes a FASTA reference genome sequence for downstream use by the BWA-backtrack and BWA-MEM mapping apps.
+1. BWA FASTA indexer: Indexes a FASTA reference genome sequence for downstream use by the BWA-backtrack and BWA-MEM mapping apps.
 Input: Reference FASTA file (UCSC hg19)
 Output:BWA FASTA index file 
 
-BWA-MEM mapping: Maps FASTQ (paired or unpaired reads) to reference genome using BWA-MEM algorithm.
-
+1. BWA-MEM mapping: Maps FASTQ (paired or unpaired reads) to reference genome using BWA-MEM algorithm.
 Inputs: DNA paired end fastq files and BWA FASTA index file 
 Outputs: Sorted BAM file and Index BAM file
 
-
-Exome GATK lite pipeline: Deduplicates, realigns and recalibrates base quality scores, and calls SNPs and indels in the human exome. Runs the following software from the Picard 1.104 and GATK-lite v2.3 suite of tools:
+1. Exome GATK lite pipeline: Deduplicates, realigns and recalibrates base quality scores, and calls SNPs and indels in the human exome. Runs the following software from the Picard 1.104 and GATK-lite v2.3 suite of tools:
 - Picard MarkDuplicates
 - GATK-lite RealignerTargetCreator (if configured to do realignment around novel indels)
 - GATK-lite IndelRealigner
 - GATK-lite BaseRecalibrator
 - GATK-lite PrintReads
 - GATK-lite UnifiedGenotyper
-
 Input: A sorted BAM file.
 Outputs: gzipped VCF file with the called variants and Variants indexed file
 
 ----------//-------------//---------------------
 
-RNAseq Workflow:
-
-I. Trinity CTAT:
-- RNAseq fastq file
-- Reference genome
-
-II. DESeq2:
-- RNAseq fastq file
+II.  RNAseq Workflow:
+1. Trinity CTAT: RNAseq fastq file and Reference genome
+1. DESeq2: RNAseq fastq file
 
 
 III.  CombineR
