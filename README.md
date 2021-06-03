@@ -81,19 +81,18 @@ I. DNAseq Workflow:
 Input: Reference FASTA file (UCSC hg19)
 Output:BWA FASTA index file 
 
-1. BWA-MEM mapping: Maps FASTQ (paired or unpaired reads) to reference genome using BWA-MEM algorithm.
+2. BWA-MEM mapping: Maps FASTQ (paired or unpaired reads) to reference genome using BWA-MEM algorithm. Marks duplicates.
 Inputs: DNA paired end fastq files and BWA FASTA index file 
 Outputs: Sorted BAM file and Index BAM file
 
-1. Exome GATK lite pipeline: Deduplicates, realigns and recalibrates base quality scores, and calls SNPs and indels in the human exome. Runs the following software from the Picard 1.104 and GATK-lite v2.3 suite of tools:
-- Picard MarkDuplicates
-- GATK-lite RealignerTargetCreator (if configured to do realignment around novel indels)
-- GATK-lite IndelRealigner
-- GATK-lite BaseRecalibrator
-- GATK-lite PrintReads
-- GATK-lite UnifiedGenotyper
-Input: A sorted BAM file.
-Outputs: gzipped VCF file with the called variants and Variants indexed file
+3. GATK4 base recalibration: Recalibrates base quality scores
+
+
+4. GATK4 Haplotype caller
+
+
+5. GATK4 Genotyping
+
 
 ----------//-------------//---------------------
 
