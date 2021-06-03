@@ -123,7 +123,7 @@ A TSV-delimited file per sample. Each line describes one variant, including the 
 
 
 ## Flowchart
-<img width="303" alt="Screen Shot 2021-06-02 at 6 24 51 PM" src="https://user-images.githubusercontent.com/5508556/120559925-e4d8eb80-c3cf-11eb-9d36-835f990482f2.png">
+<img width="429" alt="flowchart_for_rupesh" src="https://user-images.githubusercontent.com/5508556/120688832-76e50080-c471-11eb-8cb3-baf033cd14b9.png">
 Flowchart of the pipeline
 
 ## Results 
