@@ -82,18 +82,18 @@ rna_seq <- as.data.frame(
     -paramRangeID
   )
 
-bind_rows(
+variants <- bind_rows(
   dna_seq %>%
     mutate(Source = "DNA"),
   rna_seq %>%
     mutate(Source = "RNA")
 ) %>%
   group_by(
-    mutation_id, REF, ALT
+    mutation_id, REF, ALT, QUAL, FILTER
   ) %>%
   summarise(
     Source=ifelse(n()==1, Source, "BOTH")
-  )
+  ) %>% as.data.frame()
 
 
 ### Select Columns in Each VCF that represent a unique mutation (primary key)
