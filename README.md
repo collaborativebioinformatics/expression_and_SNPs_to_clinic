@@ -32,6 +32,13 @@ We've identified a study archived in the Gene Expression Omnibus (Geo Accession:
 
 ## Installation 
 
+To add the Trinity CTAT applet, use the following comamnd:
+java -jar dxWDL-v1.50.jar compile ctat_mutations_2pt5.wdl -project project-ID
+
+
+To add the OpenCRAVAT applet, use the following comamnd:
+java -jar dxWDL-v1.50.jar compile oc-run.wdl -project project-ID
+
 
 ## Methods
 1. Obtain high quality test data
