@@ -61,7 +61,7 @@ java -jar dxWDL-v1.50.jar compile ctat_mutations_2pt5.wdl -project project-ID
 To add the OpenCRAVAT applet, use the following comamnd:
 java -jar dxWDL-v1.50.jar compile oc-run.wdl -project project-ID
 
-There are two separate DNA Nexus workflows for DNAseq and RNAseq processing. 
+There are two separate DNA Nexus workflows for DNAseq and RNAseq processing. These will be made publicly available. 
 
 
 ## Methods
