@@ -30,6 +30,29 @@ In order to thoroughly evaluate this the pipeline we've identified several studi
 
 We've identified a study archived in the Gene Expression Omnibus (Geo Accession:GSE75935) that provides RNA Seq and DNA Seq data from human tissue samples collected from ovarian cancer patients. The data includess three cancer patients, three tumor samples per patient from different sites, two normal tissue samples from two different patients, four cell lines.
 
+| Run         |	AvgSpotLen	| LibrarySource	  | source_name	| patient_identifier |
+| --- | --- | --- | --- | --- |
+| SRR2989954	| 249	        | GENOMIC	        | Ovarian tumor	| 1 |
+| SRR2989955	| 249	        | GENOMIC	        | Peritoneum tumor	| 1 |
+| SRR2989956	| 249	        | GENOMIC	        | Lymph node tumor	| 1 | 
+| SRR2989957	| 249	        | GENOMIC	        | Ovarian tumor	| 2 |
+| SRR2989958	| 249	        | GENOMIC         |	Peritoneum tumor	| 2 |
+| SRR2989959	| 249	        | GENOMIC        	| Lymph node tumor	| 2 |
+| SRR2989960	| 209	        | GENOMIC	        | Ovarian tumor	| 3 |
+| SRR2989961	| 249	        | GENOMIC	        | Peritoneum tumor	| 3 |
+| SRR2989962	| 249	        | GENOMIC        	| Lymph node tumor	| 3 |
+| SRR2989963	| 199	        | GENOMIC	        | Normal ovary	| 1 |
+| SRR2989964	| 199	        | GENOMIC	        | Normal ovary	| 2 |
+| SRR2989969	| 96	        | TRANSCRIPTOMIC	| Ovarian tumor | 	1 |
+| SRR2989970	| 96	        | TRANSCRIPTOMIC	| Peritoneum tumor	| 1 |
+| SRR2989971	| 96        	| TRANSCRIPTOMIC	| Lymph node tumor	| 1 |
+| SRR2989972	| 96	        | TRANSCRIPTOMIC	| Ovarian tumor	| 2 |
+| SRR2989973	| 96	        | TRANSCRIPTOMIC	| Peritoneum tumor	| 2 |
+| SRR2989974	| 96	        | TRANSCRIPTOMIC	| Lymph node tumor	| 2 |
+| SRR2989975	| 96	        | TRANSCRIPTOMIC	| Ovarian tumor	| 3 |
+| SRR2989976	| 96        	| TRANSCRIPTOMIC	| Peritoneum tumor	| 3 |
+| SRR2989977	| 96        	| TRANSCRIPTOMIC	| Lymph node tumor	| 3 |
+
 ## Installation 
 
 To add the Trinity CTAT applet, use the following comamnd:
