@@ -16,6 +16,7 @@ Build a streamlined and easy to use workflow for reporting expressed variants fr
 
 ## Introduction 
 
+The increasing usage of DNA and RNA sequencing technologies have lead to an absolute deluge of data that can be hard to extract, and hard to interpret. By putting together DNAseq and RNAseq calling pipelines into a simple process, we make it easy to find variants. Then annotation with OpenCRAVAT fills in the existing background information, including clinical relevance for easy filtering to find the most impactful variants. Finally, differential expression analysis can fill in even more background information across multiple samples. This is particularly useful in cancer analyses, where tumors and metastases may be sequenced separately.  
 
 We use the CTAT-Mutation pipeline will be used to call expresseed variants from RNAseq data. The CTAT-Mutation pipeline (https://github.com/NCIP/ctat-mutations/wiki) makes it easy to discover variants from RNA-seq data, and requires only the RNA-seq reads as input. The pipeline also annotates variants, including the RADAR and RediPortal databases for identifying likely RNA-editing events, dbSNP and gnomAD for annotating common variants, COSMIC to highlight known cancer mutations, and OpenCRAVAT to annotate and prioritize variants according to likely biological impact and relevance to cancer. The CTAT-Mutations Pipeline integrates GATK Best Practices along with downstream steps to annotate and filter variants, and to additionally prioritize variants that may be relevant to cancer biology. 
 
@@ -61,7 +62,7 @@ java -jar dxWDL-v1.50.jar compile ctat_mutations_2pt5.wdl -project project-ID
 To add the OpenCRAVAT applet, use the following comamnd:
 java -jar dxWDL-v1.50.jar compile oc-run.wdl -project project-ID
 
-There are two separate DNA Nexus workflows for DNAseq and RNAseq processing. 
+There are two separate DNA Nexus workflows for DNAseq and RNAseq processing. These will be made publicly available. 
 
 
 ## Methods
@@ -75,25 +76,22 @@ There are two separate DNA Nexus workflows for DNAseq and RNAseq processing.
 
 #### Inputs 
 
-I. DNAseq Workflow:
+I. DNAseq Workflow on DNAnexus:
 
-1. BWA FASTA indexer: Indexes a FASTA reference genome sequence for downstream use by the BWA-backtrack and BWA-MEM mapping apps.
-Input: Reference FASTA file (UCSC hg19)
-Output:BWA FASTA index file 
-
-1. BWA-MEM mapping: Maps FASTQ (paired or unpaired reads) to reference genome using BWA-MEM algorithm.
+1. BWA-MEM mapping: Maps FASTQ (paired or unpaired reads) to reference genome using BWA-MEM algorithm. Marks duplicates.
 Inputs: DNA paired end fastq files and BWA FASTA index file 
 Outputs: Sorted BAM file and Index BAM file
 
-1. Exome GATK lite pipeline: Deduplicates, realigns and recalibrates base quality scores, and calls SNPs and indels in the human exome. Runs the following software from the Picard 1.104 and GATK-lite v2.3 suite of tools:
-- Picard MarkDuplicates
-- GATK-lite RealignerTargetCreator (if configured to do realignment around novel indels)
-- GATK-lite IndelRealigner
-- GATK-lite BaseRecalibrator
-- GATK-lite PrintReads
-- GATK-lite UnifiedGenotyper
-Input: A sorted BAM file.
-Outputs: gzipped VCF file with the called variants and Variants indexed file
+2. GATK4 base recalibration: Recalibrates base quality scores
+
+3. GATK4 Haplotype caller: Variant calling
+
+4. GATK4 Genotyping: Genotypes variants and outputs a VCF
+
+5. OpenCRAVAT: Annotates variants
+
+![image](https://user-images.githubusercontent.com/37877833/120818024-d7c71400-c517-11eb-81e0-6925a9e7bf38.png)
+
 
 ----------//-------------//---------------------
 
