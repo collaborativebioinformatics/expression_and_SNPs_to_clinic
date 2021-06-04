@@ -102,12 +102,12 @@ II.  RNAseq Workflow:
 
 
 III.  CombineR
-- This is a custom script that is a work-in-progress
+A custom script that takes in two RNAseq VCFs, a DNAseq VCF, and differential expresssion file. The script starts with simple bash text manipulation commands like sed and grep to keep it simple. 
 
 
 #### Outputs 
 
-A TSV-delimited file per sample. Each line describes one variant, including the following fields: 
+It is important to present the final results cleanly. CombineR outputs a TSV-delimited file per sample. Each line describes one variant, including the following fields: 
 - Variant HGVS expression 
 - Hugo gene identifier 
 - Variant sequence ontology consequence
@@ -122,13 +122,9 @@ A TSV-delimited file per sample. Each line describes one variant, including the 
 
 ## Operation 
 
-
 ## Flowchart
 <img width="429" alt="flowchart_for_rupesh" src="https://user-images.githubusercontent.com/5508556/120688832-76e50080-c471-11eb-8cb3-baf033cd14b9.png">
 Flowchart of the pipeline
-
-## Results 
-Still working on this! 
 
 ## References 
 
