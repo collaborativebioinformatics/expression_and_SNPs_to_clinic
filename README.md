@@ -104,21 +104,30 @@ II.  RNAseq Workflow:
 
 
 III.  CombineR
+
+Operates on 3 Annotated VCF Files and a table of differentially expressed genes.  Each VCF file corresponds to a different sequencing assay from the same patient, one DNA Seq and 2 RNA Seq. CombineR extracts and summarizes the unique mutations observed accross all three VCF files, and integrates differential expression analysis results from a contrast between the two RNA Seq samples. The summary explicitly reports which of the three assays a mutation was obseved in, and incorporates variant annotation from OpenCravat.
+
 #### Inputs
-Operates on 3 Annotated VCF Files and a table of differentially expressed genes.  Each VCF file corresponds to a different sequencing assay from the same patient, one DNA Seq and 2 RNA Seq. CombineR extracts and summarizes the unique mutations observed accross all three VCF files. 
 
 #### Outputs 
 
-A TSV-delimited file per sample. Each line describes one variant, including the following fields: 
+##### Primary
+A TSV-delimited file per patient. Each line describes one variant, including the following fields: 
 - Variant HGVS expression 
 - Hugo gene identifier 
 - Variant sequence ontology consequence
 - ClinVar annotation
 - COSMIC annotation 
 - Variant zygosity 
-- Gene-level differential expression value
+- Gene-level differential expression values
 - Source (DNA,RNA1, RNA2)
 - Source identifier / Tissue origin, if relevant 
+
+##### Secondary
+A TSV-delimited file per patient. Each line describes one of the top 5 differentially expressed genes, and includes the following fields:
+- HUGO gene identifier
+- Fold Change Between RNA Samples
+- Number of unique mutations associated with this gene
 
 ## Operation 
 
