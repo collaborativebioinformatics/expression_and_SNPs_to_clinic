@@ -1,0 +1,398 @@
+{
+  "name": "RNA1_copy",
+  "title": "RNA1_copy",
+  "stages": [
+    {
+      "id": "stage-G2v9pyQ06F18PKk39PZ47740",
+      "executable": "app-fastqc/3.0.1",
+      "folder": "/rna-workflow-1/fastqc_results",
+      "input": {
+        "reads": {
+          "$dnanexus_link": "file-G2qqXPj06F11zY10K5Z98vv6"
+        },
+        "extra_options": "t -20"
+      },
+      "systemRequirements": {
+        "*": {
+          "instanceType": "mem1_ssd1_v2_x8"
+        }
+      }
+    },
+    {
+      "id": "stage-G2v9pz806F1KpKYqFgByKBp2",
+      "executable": "app-fastqc/3.0.1",
+      "folder": "/rna-workflow-1/fastqc_results",
+      "input": {
+        "reads": {
+          "$dnanexus_link": "file-G2qqXV806F10j7zz2P2jv3FQ"
+        },
+        "extra_options": "t -20"
+      },
+      "systemRequirements": {
+        "*": {
+          "instanceType": "mem1_ssd1_v2_x8"
+        }
+      }
+    },
+    {
+      "id": "stage-G2vvV0806F1B7yZJ9220V76q",
+      "executable": "app-fastqc/3.0.1",
+      "folder": "/rna-workflow-1/fastqc_results",
+      "input": {
+        "reads": {
+          "$dnanexus_link": "file-G2vvFqQ0GFfgYFPp7b15bykK"
+        }
+      }
+    },
+    {
+      "id": "stage-G2vvV2006F18x06q4fFvQBZz",
+      "executable": "app-fastqc/3.0.1",
+      "folder": "/rna-workflow-1/fastqc_results",
+      "input": {
+        "reads": {
+          "$dnanexus_link": "file-G2vvFvQ0kZ22ygj1PzK2VFv5"
+        }
+      }
+    },
+    {
+      "id": "stage-G2vvV1006F13G310B6y7GFVK",
+      "executable": "app-fastqc/3.0.1",
+      "folder": "/rna-workflow-1/fastqc_results",
+      "input": {
+        "reads": {
+          "$dnanexus_link": "file-G2vvK7j0x8xG1Yb990VKBk8p"
+        }
+      }
+    },
+    {
+      "id": "stage-G2vvV3Q06F1PbgqV704J11kg",
+      "executable": "app-fastqc/3.0.1",
+      "folder": "/rna-workflow-1/fastqc_results",
+      "input": {
+        "reads": {
+          "$dnanexus_link": "file-G2vvK5Q0bb7q5qKJ2QV1g4GV"
+        }
+      }
+    },
+    {
+      "id": "stage-G2vvV2j06F1BG2jgBf4q225V",
+      "executable": "app-fastqc/3.0.1",
+      "folder": "/rna-workflow-1/fastqc_results",
+      "input": {
+        "reads": {
+          "$dnanexus_link": "file-G2vvK6007x5FZfKGP9JzQ0Fk"
+        }
+      }
+    },
+    {
+      "id": "stage-G2vvV4806F17bjq04ppJbjy6",
+      "executable": "app-fastqc/3.0.1",
+      "folder": "/rna-workflow-1/fastqc_results",
+      "input": {
+        "reads": {
+          "$dnanexus_link": "file-G2vvK68074JFZZX6F84y5g4z"
+        }
+      }
+    },
+    {
+      "id": "stage-G2vX2Y006F139yPJKffxf50Q",
+      "executable": "app-flexbar_fastq_read_trimmer/1.4.0",
+      "folder": "/rna-workflow-1/quality_reads",
+      "input": {
+        "reads2_fastqgz": {
+          "$dnanexus_link": "file-G2vv9yj0PXPbVKQfGZ38jjfx"
+        },
+        "reads_fastqgz": {
+          "$dnanexus_link": "file-G2vv8v80Y1Y1F12pFYbpPgB1"
+        },
+        "phred64": false,
+        "trim_quality_threshold": 20,
+        "min_length": 20
+      },
+      "systemRequirements": {
+        "*": {
+          "instanceType": "mem1_ssd1_x8"
+        }
+      }
+    },
+    {
+      "id": "stage-G2vxQP006F14YFyp179GFvgx",
+      "executable": "app-flexbar_fastq_read_trimmer/1.4.0",
+      "folder": "/rna-workflow-1/quality_reads",
+      "input": {
+        "reads_fastqgz": {
+          "$dnanexus_link": "file-G2vvFqQ0GFfgYFPp7b15bykK"
+        },
+        "reads2_fastqgz": {
+          "$dnanexus_link": "file-G2vvFvQ0kZ22ygj1PzK2VFv5"
+        },
+        "trim_quality_threshold": 20,
+        "min_length": 20
+      }
+    },
+    {
+      "id": "stage-G2vxQPj06F1KzkVP3YbVQFbf",
+      "executable": "app-flexbar_fastq_read_trimmer/1.4.0",
+      "folder": "/rna-workflow-1/quality_reads",
+      "input": {
+        "reads_fastqgz": {
+          "$dnanexus_link": "file-G2vvK7j0x8xG1Yb990VKBk8p"
+        },
+        "reads2_fastqgz": {
+          "$dnanexus_link": "file-G2vvK5Q0bb7q5qKJ2QV1g4GV"
+        },
+        "trim_quality_threshold": 20,
+        "min_length": 20
+      }
+    },
+    {
+      "id": "stage-G2vxQQQ06F1B8y594BQVyV1k",
+      "executable": "app-flexbar_fastq_read_trimmer/1.4.0",
+      "folder": "/rna-workflow-1/quality_reads",
+      "input": {
+        "reads_fastqgz": {
+          "$dnanexus_link": "file-G2vvK6007x5FZfKGP9JzQ0Fk"
+        },
+        "reads2_fastqgz": {
+          "$dnanexus_link": "file-G2vvK68074JFZZX6F84y5g4z"
+        },
+        "trim_quality_threshold": 20,
+        "min_length": 20
+      }
+    },
+    {
+      "id": "stage-G2vkkJ006F1K18P752545k15",
+      "executable": "app-star_mapping/2.0.0",
+      "folder": "/rna-workflow-1/star_results",
+      "input": {
+        "reads_fwd_fa": [
+          {
+            "$dnanexus_link": {
+              "stage": "stage-G2vX2Y006F139yPJKffxf50Q",
+              "outputField": "trimmed_reads_fastqgz"
+            }
+          }
+        ],
+        "reads_rev_fa": [
+          {
+            "$dnanexus_link": {
+              "stage": "stage-G2vX2Y006F139yPJKffxf50Q",
+              "outputField": "trimmed_reads2_fastqgz"
+            }
+          }
+        ],
+        "genome_index": {
+          "$dnanexus_link": "file-FxfBZBQ0vGYbx84B3pJGJjG9"
+        }
+      }
+    },
+    {
+      "id": "stage-G2vxy0Q06F197x1k8GKxZZf1",
+      "executable": "app-star_mapping/2.0.0",
+      "folder": "/rna-workflow-1/star_results",
+      "input": {
+        "genome_index": {
+          "$dnanexus_link": "file-FxfBZBQ0vGYbx84B3pJGJjG9"
+        },
+        "reads_fwd_fa": [
+          {
+            "$dnanexus_link": {
+              "stage": "stage-G2vxQP006F14YFyp179GFvgx",
+              "outputField": "trimmed_reads_fastqgz"
+            }
+          }
+        ],
+        "reads_rev_fa": [
+          {
+            "$dnanexus_link": {
+              "stage": "stage-G2vxQP006F14YFyp179GFvgx",
+              "outputField": "trimmed_reads2_fastqgz"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "stage-G2vxy0Q06F184GP0P07x87vy",
+      "executable": "app-star_mapping/2.0.0",
+      "folder": "/rna-workflow-1/star_results",
+      "input": {
+        "genome_index": {
+          "$dnanexus_link": "file-FxfBZBQ0vGYbx84B3pJGJjG9"
+        },
+        "reads_rev_fa": [
+          {
+            "$dnanexus_link": {
+              "stage": "stage-G2vxQPj06F1KzkVP3YbVQFbf",
+              "outputField": "trimmed_reads2_fastqgz"
+            }
+          }
+        ],
+        "reads_fwd_fa": [
+          {
+            "$dnanexus_link": {
+              "stage": "stage-G2vxQPj06F1KzkVP3YbVQFbf",
+              "outputField": "trimmed_reads_fastqgz"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "stage-G2vxy0j06F1Fzf04J7YvX4X9",
+      "executable": "app-star_mapping/2.0.0",
+      "folder": "/rna-workflow-1/star_results",
+      "input": {
+        "genome_index": {
+          "$dnanexus_link": "file-FxfBZBQ0vGYbx84B3pJGJjG9"
+        },
+        "reads_fwd_fa": [
+          {
+            "$dnanexus_link": {
+              "stage": "stage-G2vxQQQ06F1B8y594BQVyV1k",
+              "outputField": "trimmed_reads_fastqgz"
+            }
+          }
+        ],
+        "reads_rev_fa": [
+          {
+            "$dnanexus_link": {
+              "stage": "stage-G2vxQQQ06F1B8y594BQVyV1k",
+              "outputField": "trimmed_reads2_fastqgz"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "stage-G2vyXx806F1961Xp0KGxYy2k",
+      "executable": "app-picard_collect_multiple_metrics/1.1.1",
+      "folder": "/rna-workflow-1/picard_metrics",
+      "input": {
+        "sorted_bam": {
+          "$dnanexus_link": "file-G2vqP680k7Gzq921FjzF6JYZ"
+        },
+        "fasta_index": {
+          "$dnanexus_link": "file-G2vKGzQ0bpX301YPPxzX8GJQ"
+        }
+      }
+    },
+    {
+      "id": "stage-G2vyZX806F1B8y594BQVyVz4",
+      "executable": "app-picard_collect_multiple_metrics/1.1.1",
+      "folder": "/rna-workflow-1/picard_metrics",
+      "input": {
+        "sorted_bam": {
+          "$dnanexus_link": "file-G2vyPf80JFpFV90XG7f7pzFJ"
+        },
+        "fasta_index": {
+          "$dnanexus_link": "file-G2vKGzQ0bpX301YPPxzX8GJQ"
+        }
+      }
+    },
+    {
+      "id": "stage-G2vyZb806F14YFyp179GFxv8",
+      "executable": "app-picard_collect_multiple_metrics/1.1.1",
+      "folder": "/rna-workflow-1/picard_metrics",
+      "input": {
+        "sorted_bam": {
+          "$dnanexus_link": "file-G2vyQ5801vV7YFPp7b15f45G"
+        },
+        "fasta_index": {
+          "$dnanexus_link": "file-G2vKGzQ0bpX301YPPxzX8GJQ"
+        }
+      }
+    },
+    {
+      "id": "stage-G2vyZb006F1BG2jgBf4q23yB",
+      "executable": "app-picard_collect_multiple_metrics/1.1.1",
+      "folder": "/rna-workflow-1/picard_metrics",
+      "input": {
+        "sorted_bam": {
+          "$dnanexus_link": "file-G2vyG900Qx22QV0YKJ88jQpB"
+        },
+        "fasta_index": {
+          "$dnanexus_link": "file-G2vKGzQ0bpX301YPPxzX8GJQ"
+        }
+      }
+    },
+    {
+      "id": "stage-G2vyjXQ06F1PbgqV704J16fZ",
+      "executable": "app-picard_mark_duplicates/2.1.1",
+      "folder": "/rna-workflow-1/picard_mark_duplicates",
+      "input": {
+        "sorted_bam": {
+          "$dnanexus_link": {
+            "stage": "stage-G2vyXx806F1961Xp0KGxYy2k",
+            "inputField": "sorted_bam"
+          }
+        },
+        "remove_duplicates": false
+      }
+    },
+    {
+      "id": "stage-G2vyjZ006F10xBkf3Z3VG1Q0",
+      "executable": "app-picard_mark_duplicates/2.1.1",
+      "folder": "/rna-workflow-1/picard_mark_duplicates",
+      "input": {
+        "sorted_bam": {
+          "$dnanexus_link": {
+            "stage": "stage-G2vyZX806F1B8y594BQVyVz4",
+            "inputField": "sorted_bam"
+          }
+        },
+        "remove_duplicates": false
+      }
+    },
+    {
+      "id": "stage-G2vyjb006F1JPJVG88g6BJ21",
+      "executable": "app-picard_mark_duplicates/2.1.1",
+      "folder": "/rna-workflow-1/picard_mark_duplicates",
+      "input": {
+        "sorted_bam": {
+          "$dnanexus_link": {
+            "stage": "stage-G2vyZb806F14YFyp179GFxv8",
+            "inputField": "sorted_bam"
+          }
+        },
+        "remove_duplicates": false
+      }
+    },
+    {
+      "id": "stage-G2vyjb006F141XV6F28xvXkg",
+      "executable": "app-picard_mark_duplicates/2.1.1",
+      "folder": "/rna-workflow-1/picard_mark_duplicates",
+      "input": {
+        "sorted_bam": {
+          "$dnanexus_link": {
+            "stage": "stage-G2vyZb006F1BG2jgBf4q23yB",
+            "inputField": "sorted_bam"
+          }
+        },
+        "remove_duplicates": false
+      }
+    },
+    {
+      "id": "stage-G2x2qB006F1B8G7p0QJ40Xgf",
+      "executable": "app-gatk4_haplotypecaller_parallel/2.0.1",
+      "folder": "/rna-workflow-1/variants_results",
+      "input": {
+        "mappings_sorted_bam": {
+          "$dnanexus_link": {
+            "stage": "stage-G2vyjXQ06F1PbgqV704J16fZ",
+            "outputField": "sorted_bam"
+          }
+        },
+        "genome_fastagz": {
+          "$dnanexus_link": "file-G2x0XJ80V181v8K5BJP8z1Pj"
+        },
+        "dbsnp_vcfgz": {
+          "$dnanexus_link": {
+            "project": "project-B6JG85Z2J35vb6Z7pQ9Q02j8",
+            "id": "file-BGkggXG2J35jJxqq64zQ01B1"
+          }
+        }
+      }
+    }
+  ]
+}
