@@ -75,7 +75,7 @@ There are two separate DNA Nexus workflows for DNAseq and RNAseq processing. The
 
 #### Inputs 
 
-I. DNAseq Workflow:
+I. DNAseq Workflow on DNAnexus:
 
 1 BWA-MEM mapping: Maps FASTQ (paired or unpaired reads) to reference genome using BWA-MEM algorithm. Marks duplicates.
 Inputs: DNA paired end fastq files and BWA FASTA index file 
@@ -83,13 +83,11 @@ Outputs: Sorted BAM file and Index BAM file
 
 2. GATK4 base recalibration: Recalibrates base quality scores
 
+3. GATK4 Haplotype caller: Variant calling
 
-3. GATK4 Haplotype caller
+4. GATK4 Genotyping: Genotypes variants and outputs a VCF
 
-
-4. GATK4 Genotyping
-
-5. OpenCRAVAT
+5. OpenCRAVAT: Annotates variants
 
 
 ![image](https://user-images.githubusercontent.com/37877833/120817270-3049e180-c517-11eb-9285-ab18e108cea6.png)
