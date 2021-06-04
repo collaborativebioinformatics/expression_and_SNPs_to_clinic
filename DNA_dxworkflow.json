@@ -1,0 +1,119 @@
+{
+  "name": "DNA-seq full workflow",
+  "title": "DNA-seq full workflow",
+  "outputFolder": "/dna-seq_workflow",
+  "stages": [
+    {
+      "id": "stage-G2vQyZj06F163pq1G40kqXBj",
+      "executable": "app-bwa_mem_fastq_read_mapper/2.0.4",
+      "folder": "/dna-seq_workflow",
+      "input": {
+        "reads_fastqgzs": [
+          {
+            "$dnanexus_link": "file-G2qqXq006F1K6fXQ3GYffjZK"
+          }
+        ],
+        "reads2_fastqgzs": [
+          {
+            "$dnanexus_link": "file-G2qqXxQ06F17Bv2b9FvVQFxf"
+          }
+        ],
+        "genomeindex_targz": {
+          "$dnanexus_link": "file-G2v2PbQ0BF26g3Jf3Gzgvj00"
+        }
+      }
+    },
+    {
+      "id": "stage-G2vbkx806F1BG2jgBf4q1Gz2",
+      "executable": "app-gatk4_bqsr_parallel/2.0.1",
+      "input": {
+        "mappings_sorted_bam": {
+          "$dnanexus_link": {
+            "stage": "stage-G2vQyZj06F163pq1G40kqXBj",
+            "outputField": "sorted_bam"
+          }
+        },
+        "known_vcfgzs": [
+          {
+            "$dnanexus_link": {
+              "project": "project-B6JG85Z2J35vb6Z7pQ9Q02j8",
+              "id": "file-BGkgv1G2J35x5BKx6G7Q00q3"
+            }
+          },
+          {
+            "$dnanexus_link": {
+              "project": "project-B6JG85Z2J35vb6Z7pQ9Q02j8",
+              "id": "file-B6ZXgPv2J35pjQJzV4yQ17g2"
+            }
+          },
+          {
+            "$dnanexus_link": {
+              "project": "project-B6JG85Z2J35vb6Z7pQ9Q02j8",
+              "id": "file-B6ZXgKG2J35yv3fBVGyQ6Ffp"
+            }
+          }
+        ],
+        "genome_fastagz": {
+          "$dnanexus_link": "file-B6qq93v2J35fB53gZ5G0007K"
+        }
+      }
+    },
+    {
+      "id": "stage-G2v3f2Q06F1B7yZJ9220PpgJ",
+      "executable": "app-gatk4_haplotypecaller_parallel/2.0.1",
+      "folder": "/dna-seq_workflow",
+      "input": {
+        "genome_fastagz": {
+          "$dnanexus_link": "file-B6qq93v2J35fB53gZ5G0007K"
+        },
+        "dbsnp_vcfgz": {
+          "$dnanexus_link": {
+            "project": "project-B6JG85Z2J35vb6Z7pQ9Q02j8",
+            "id": "file-BGkgv1G2J35x5BKx6G7Q00q3"
+          }
+        },
+        "mappings_sorted_bam": {
+          "$dnanexus_link": {
+            "stage": "stage-G2vbkx806F1BG2jgBf4q1Gz2",
+            "outputField": "mappings_sorted_bam"
+          }
+        }
+      }
+    },
+    {
+      "id": "stage-G2vXjz806F1GK3J67FgKVqVP",
+      "executable": "app-gatk4_genotypegvcfs_single_sample_parallel/2.0.0",
+      "folder": "/dna-seq_workflow",
+      "input": {
+        "variant_gvcf": {
+          "$dnanexus_link": {
+            "stage": "stage-G2v3f2Q06F1B7yZJ9220PpgJ",
+            "outputField": "variants_gvcf"
+          }
+        },
+        "genome_fastagz": {
+          "$dnanexus_link": "file-B6qq93v2J35fB53gZ5G0007K"
+        },
+        "dbsnp_vcfgz": {
+          "$dnanexus_link": {
+            "project": "project-B6JG85Z2J35vb6Z7pQ9Q02j8",
+            "id": "file-BGkgv1G2J35x5BKx6G7Q00q3"
+          }
+        }
+      }
+    },
+    {
+      "id": "stage-G2vbppQ06F19344gBKYQj7PX",
+      "executable": "applet-G2vK3X806F1Pg7y29GQfzF61",
+      "input": {
+        "variants": {
+          "$dnanexus_link": {
+            "stage": "stage-G2vXjz806F1GK3J67FgKVqVP",
+            "outputField": "variants_vcfgz"
+          }
+        },
+        "genome": "hg19"
+      }
+    }
+  ]
+}

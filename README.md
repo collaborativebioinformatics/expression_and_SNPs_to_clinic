@@ -1,3 +1,5 @@
+
+
 # Expression and SNPs to clinic
 Smooth transition of called variants from RNAseq/DNAseq and expression to the clinic. 
 
@@ -20,7 +22,7 @@ The increasing usage of DNA and RNA sequencing technologies have lead to an abso
 
 We use the CTAT-Mutation pipeline will be used to call expresseed variants from RNAseq data. The CTAT-Mutation pipeline (https://github.com/NCIP/ctat-mutations/wiki) makes it easy to discover variants from RNA-seq data, and requires only the RNA-seq reads as input. The pipeline also annotates variants, including the RADAR and RediPortal databases for identifying likely RNA-editing events, dbSNP and gnomAD for annotating common variants, COSMIC to highlight known cancer mutations, and OpenCRAVAT to annotate and prioritize variants according to likely biological impact and relevance to cancer. The CTAT-Mutations Pipeline integrates GATK Best Practices along with downstream steps to annotate and filter variants, and to additionally prioritize variants that may be relevant to cancer biology. 
 
-We will then use the GATK Best Practices pipeline to call variants from DNAseq. Next, we will identify genes that are differentially expressed. Finally, we will aggregate the variants identified through DNA and RNAseq, and curate extensive clinical annotations using OpenCRAVAT to identify priority variants. 
+We will then use the GATK Best Practices pipeline to call variants from DNAseq. Next, we will identify genes that are differentially expressed. Finally, we will aggregate the variants identified through DNA and RNAseq, and curate extensive clinical annotations using OpenCRAVAT to identify priority variants. We use an incredible new tool called CombineR to take this disparate information and return a simple interpretable output. Finally, CompileR also returns a simple list of the top 5 differentially expressed genes and their mutation burden. 
 
 ## Test Data 
 
@@ -56,13 +58,13 @@ We've identified a study archived in the Gene Expression Omnibus (Geo Accession:
 
 ## Installation 
 
-To add the Trinity CTAT applet, use the following comamnd:
+To add the Trinity CTAT applet (unincorporated, but still a great option), use the following comamnd:
 java -jar dxWDL-v1.50.jar compile ctat_mutations_2pt5.wdl -project project-ID
 
 To add the OpenCRAVAT applet, use the following comamnd:
 java -jar dxWDL-v1.50.jar compile oc-run.wdl -project project-ID
 
-There are two separate DNA Nexus workflows for DNAseq and RNAseq processing. These will be made publicly available. 
+There are two separate DNA Nexus workflows for DNAseq and RNAseq processing, and one for differential expression analysis. These will be made publicly available as json files on this repo, following the instructions here: https://documentation.dnanexus.com/developer/workflows/version-and-publish-workflows. 
 
 
 ## Methods
@@ -99,14 +101,16 @@ II.  RNAseq Workflow:
 1. Trinity CTAT: RNAseq fastq file and Reference genome
 1. DESeq2: RNAseq fastq file
 
+The screenshot of the RNAseq pipeline is too big! See the json file above. 
+
 
 III.  CombineR
-- This is a custom script that is a work-in-progress
+A custom script that takes in two RNAseq VCFs, a DNAseq VCF, and differential expresssion file. The script starts with simple bash text manipulation commands like sed and grep to keep it simple. The CombineR script extracts a unique set of annotated variants	observed in three independent sequencing assays	from the same individual, one DNA Sequencing assay, and	two RNA	Sequencing Assays from different tissue	specimens. The	script integrates differential gene expression estimates reflecting the	difference in gene level transcript abundance for variants observed in each of the two RNA Sequencing samples.
 
 
 #### Outputs 
 
-A TSV-delimited file per sample. Each line describes one variant, including the following fields: 
+It is important to present the final results cleanly. CombineR outputs a TSV-delimited file per sample. Each line describes one variant, including the following fields: 
 - Variant HGVS expression 
 - Hugo gene identifier 
 - Variant sequence ontology consequence
@@ -115,17 +119,13 @@ A TSV-delimited file per sample. Each line describes one variant, including the 
 - Variant zygosity 
 - Gene-level differential expression value
 - Source (DNA,RNA,Both)
-- Source identifier / Tissue origin, if relevant 
+- Source identifier / Tissue origin, if relevant
 
-## Operation 
+<img width="1610" alt="Screen Shot 2021-06-04 at 12 41 42 PM" src="https://user-images.githubusercontent.com/8096975/120835455-56c94600-c532-11eb-8129-c0d05cca1b03.png">
 
 
-## Flowchart
-<img width="429" alt="flowchart_for_rupesh" src="https://user-images.githubusercontent.com/5508556/120688832-76e50080-c471-11eb-8cb3-baf033cd14b9.png">
-Flowchart of the pipeline
-
-## Results 
-Still working on this! 
+<img width="323" alt="Screen Shot 2021-06-04 at 1 26 08 PM" src="https://user-images.githubusercontent.com/8096975/120840698-909d4b00-c538-11eb-8a3d-bdeb228e227b.png">
+For use by https://github.com/collaborativebioinformatics/omics_to_omop 
 
 ## References 
 
