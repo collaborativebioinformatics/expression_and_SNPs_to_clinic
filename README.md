@@ -127,10 +127,6 @@ It is important to present the final results cleanly. CombineR outputs a TSV-del
 <img width="323" alt="Screen Shot 2021-06-04 at 1 26 08 PM" src="https://user-images.githubusercontent.com/8096975/120840698-909d4b00-c538-11eb-8a3d-bdeb228e227b.png">
 For use by https://github.com/collaborativebioinformatics/omics_to_omop 
 
-## Flowchart
-<img width="242" alt="flowchart_final" src="https://user-images.githubusercontent.com/5508556/120838086-6c8c3a80-c535-11eb-87b0-e5019d91bdba.png">
-Flowchart of the pipeline
-
 ## References 
 
 - Data: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE75935 
