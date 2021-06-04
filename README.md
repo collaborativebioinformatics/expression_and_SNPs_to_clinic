@@ -77,7 +77,7 @@ There are two separate DNA Nexus workflows for DNAseq and RNAseq processing. The
 
 I. DNAseq Workflow on DNAnexus:
 
-1 BWA-MEM mapping: Maps FASTQ (paired or unpaired reads) to reference genome using BWA-MEM algorithm. Marks duplicates.
+1. BWA-MEM mapping: Maps FASTQ (paired or unpaired reads) to reference genome using BWA-MEM algorithm. Marks duplicates.
 Inputs: DNA paired end fastq files and BWA FASTA index file 
 Outputs: Sorted BAM file and Index BAM file
 
