@@ -93,6 +93,8 @@ Outputs: Sorted BAM file and Index BAM file
 
 5. GATK4 Genotyping
 
+6.OpenCRAVAT
+
 
 ----------//-------------//---------------------
 
