@@ -77,23 +77,22 @@ There are two separate DNA Nexus workflows for DNAseq and RNAseq processing. The
 
 I. DNAseq Workflow:
 
-1. BWA FASTA indexer: Indexes a FASTA reference genome sequence for downstream use by the BWA-backtrack and BWA-MEM mapping apps.
-Input: Reference FASTA file (UCSC hg19)
-Output:BWA FASTA index file 
-
-2. BWA-MEM mapping: Maps FASTQ (paired or unpaired reads) to reference genome using BWA-MEM algorithm. Marks duplicates.
+1 BWA-MEM mapping: Maps FASTQ (paired or unpaired reads) to reference genome using BWA-MEM algorithm. Marks duplicates.
 Inputs: DNA paired end fastq files and BWA FASTA index file 
 Outputs: Sorted BAM file and Index BAM file
 
-3. GATK4 base recalibration: Recalibrates base quality scores
+2. GATK4 base recalibration: Recalibrates base quality scores
 
 
-4. GATK4 Haplotype caller
+3. GATK4 Haplotype caller
 
 
-5. GATK4 Genotyping
+4. GATK4 Genotyping
 
-6.OpenCRAVAT
+5. OpenCRAVAT
+
+
+![image](https://user-images.githubusercontent.com/37877833/120817270-3049e180-c517-11eb-9285-ab18e108cea6.png)
 
 
 ----------//-------------//---------------------
@@ -104,30 +103,21 @@ II.  RNAseq Workflow:
 
 
 III.  CombineR
+- This is a custom script that is a work-in-progress
 
-Operates on 3 Annotated VCF Files and a table of differentially expressed genes.  Each VCF file corresponds to a different sequencing assay from the same patient, one DNA Seq and 2 RNA Seq. CombineR extracts and summarizes the unique mutations observed accross all three VCF files, and integrates differential expression analysis results from a contrast between the two RNA Seq samples. The summary explicitly reports which of the three assays a mutation was obseved in, and incorporates variant annotation from OpenCravat.
-
-#### Inputs
 
 #### Outputs 
 
-##### Primary
-A TSV-delimited file per patient. Each line describes one variant, including the following fields: 
+A TSV-delimited file per sample. Each line describes one variant, including the following fields: 
 - Variant HGVS expression 
 - Hugo gene identifier 
 - Variant sequence ontology consequence
 - ClinVar annotation
 - COSMIC annotation 
 - Variant zygosity 
-- Gene-level differential expression values
-- Source (DNA,RNA1, RNA2)
+- Gene-level differential expression value
+- Source (DNA,RNA,Both)
 - Source identifier / Tissue origin, if relevant 
-
-##### Secondary
-A TSV-delimited file per patient. Each line describes one of the top 5 differentially expressed genes, and includes the following fields:
-- HUGO gene identifier
-- Fold Change Between RNA Samples
-- Number of unique mutations associated with this gene
 
 ## Operation 
 
