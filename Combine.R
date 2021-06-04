@@ -41,8 +41,7 @@ if(!"tibble" %in% row.names(installed.packages())){
 library(dplyr)
 library(plyranges)
 
-
-wd <- "~/expression_and_SNPs_to_clinic/"   # Update Path
+wd <- "~/expression_and_SNPs_to_clinic/"   # Update Path depending on system
 setwd(wd)
 
 ### GATK Variants from DNA Seq
@@ -77,8 +76,8 @@ rna_seq_2 <- read.table(
 
 
 ### Differential Expression (Tumor vs Normal)
-deg_fn
-deg_table
+deg_fn <- "Group1_vs_Group2.allGenes.csv"
+deg_table <- read.table(deg_fn, sep="\t", header=T, quote="")
 
 ######################### remove after testing ##################
 rna_seq_1 <- dna_seq[1:15,]
@@ -94,14 +93,19 @@ var_table_headers <- function(var_table){
       ALT=V12,
       HUGO_SYMBOL=V1,
       TRANSCRIPT=V2,
-      SEQ_ONT=V3
+      SEQ_ONT=V3,
+      TRANSCRIPT_HGVS=V4,
+      PROTEIN_HVGS=V5
     ) %>%
     mutate(
       VAR_ID=paste0(CHROM,":",POS,"_",REF,"/",ALT)
     )
 }
 
-dna_seq <- var_table_headers(dna_seq)
+dna_seq_check <- var_table_headers(dna_seq) %>%
+  filter(
+    grepl("^[0-9].*$", POS)
+  ) 
 rna_seq_1 <- var_table_headers(rna_seq_1)
 rna_seq_2 <- var_table_headers(rna_seq_2)
 ######################### Generate Unified Identifier Table ##################
@@ -130,8 +134,10 @@ rna_seq_2 <- var_table_headers(rna_seq_2)
 variants <- bind_rows(
   dna_seq %>%
     mutate(Source = "DNA"),
-  rna_seq %>%
-    mutate(Source = "RNA")
+  rna_seq_1 %>%
+    mutate(Source = "RNA_1"),
+  rna_seq_2 %>%
+    mutate(Source = "RNA_2")
 ) %>%
   group_by(
     mutation_id, REF, ALT, QUAL, FILTER
@@ -146,7 +152,30 @@ variants <- bind_rows(
 ### Generate Results Set
 
 
+################ MOCKUP FOR SCREENSHOTS ###########################
+dna_seq_check %>%
+  filter(HUGO_SYMBOL=="SAMD11") %>%
+  mutate(
+    OBSERVED_IN_DNA=c(
+      "YES", "YES", "NO", "NO", "NO", "YES", "NO", "NO"
+    ),
+    OBSERVED_IN_RNA_1=c(
+      "YES", "NO", "NO", "YES", "NO", "YES", "NO", "NO"
+    ),
+    OBSERVED_IN_RNA_2=c(
+      "YES", "NO", "NO", "NO", "NO", "YES", "NO", "NO"
+    ),
+    COSMIC_ID=c("COSV52316050"),
+    ZYGOSITY=c("het", "het", "hom", "hom", "hom", "hom", "hom", "hom"),
+    DE_LOG_FC=10.5,
+    DE_FDR=0.05
+  )
 
+top_five=data.frame(
+  HUGO_SYMBOL=c("RUNX1", "SAMD11", "TP53", "ATF4", "EGR1"),
+  FOLD_CHANGE=c(12, 10.5, -8, 6, 5),
+  MUTATION_COUNT=c(3,8, 15, 2, 1)
+)
 
 
 
