@@ -100,6 +100,8 @@ II.  RNAseq Workflow:
 1. Trinity CTAT: RNAseq fastq file and Reference genome
 1. DESeq2: RNAseq fastq file
 
+The screenshot of the RNAseq pipeline is too big! See the json file above. 
+
 
 III.  CombineR
 A custom script that takes in two RNAseq VCFs, a DNAseq VCF, and differential expresssion file. The script starts with simple bash text manipulation commands like sed and grep to keep it simple. 
@@ -123,7 +125,7 @@ It is important to present the final results cleanly. CombineR outputs a TSV-del
 ## Operation 
 
 ## Flowchart
-<img width="429" alt="flowchart_for_rupesh" src="https://user-images.githubusercontent.com/5508556/120688832-76e50080-c471-11eb-8cb3-baf033cd14b9.png">
+<img width="242" alt="flowchart_final" src="https://user-images.githubusercontent.com/5508556/120838086-6c8c3a80-c535-11eb-87b0-e5019d91bdba.png">
 Flowchart of the pipeline
 
 ## References 
