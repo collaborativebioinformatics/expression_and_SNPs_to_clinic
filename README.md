@@ -1,3 +1,5 @@
+<img width="1610" alt="Screen Shot 2021-06-04 at 12 41 42 PM" src="https://user-images.githubusercontent.com/8096975/120835455-56c94600-c532-11eb-8129-c0d05cca1b03.png">
+<img width="1610" alt="Screen Shot 2021-06-04 at 12 41 42 PM" src="https://user-images.githubusercontent.com/8096975/120835500-65aff880-c532-11eb-99b6-a1259351f3e1.png">
 # Expression and SNPs to clinic
 Smooth transition of called variants from RNAseq/DNAseq and expression to the clinic. 
 
