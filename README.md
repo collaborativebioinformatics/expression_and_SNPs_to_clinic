@@ -104,8 +104,8 @@ II.  RNAseq Workflow:
 
 
 III.  CombineR
-- This is a custom script that is a work-in-progress
-
+#### Inputs
+Operates on 3 Annotated VCF Files and a table of differentially expressed genes.  Each VCF file corresponds to a different sequencing assay from the same patient, one DNA Seq and 2 RNA Seq. CombineR extracts and summarizes the unique mutations observed accross all three VCF files. 
 
 #### Outputs 
 
@@ -117,7 +117,7 @@ A TSV-delimited file per sample. Each line describes one variant, including the 
 - COSMIC annotation 
 - Variant zygosity 
 - Gene-level differential expression value
-- Source (DNA,RNA,Both)
+- Source (DNA,RNA1, RNA2)
 - Source identifier / Tissue origin, if relevant 
 
 ## Operation 
