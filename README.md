@@ -122,8 +122,6 @@ It is important to present the final results cleanly. CombineR outputs a TSV-del
 
 <img width="1610" alt="Screen Shot 2021-06-04 at 12 41 42 PM" src="https://user-images.githubusercontent.com/8096975/120835455-56c94600-c532-11eb-8129-c0d05cca1b03.png">
 
-## Operation 
-
 ## Flowchart
 <img width="242" alt="flowchart_final" src="https://user-images.githubusercontent.com/5508556/120838086-6c8c3a80-c535-11eb-87b0-e5019d91bdba.png">
 Flowchart of the pipeline
