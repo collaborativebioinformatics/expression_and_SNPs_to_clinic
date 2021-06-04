@@ -7,6 +7,26 @@
 # Created: June 3, 2021
 ###################################################################################
 
+## Update Github:
+
+## Filter For PASS, No QUAL
+## One DNA, 2xRNA use RNA_1 & RNA_2
+## USE Concatenated Chromosome-position-ref-alt as unique mutation ID
+## Use Gene SYmbol to map Diff Exp, greatest sig fold change to dedup
+## Use the columns for each type of HGVS c, p
+## CRV fields are fixed position
+## Transcript Field (ENST)-- from MANE Canonical
+## COSMIC, Clinvar, 
+
+
+## Grab top 5 DE Genes -- return separate output file
+## Gene Name, Fold Change, unique mutation count 
+
+
+
+
+
+
 ###################### Setup Environment and Import Tables ########################
 if(!"dplyr" %in% row.names(installed.packages())){
   install.packages("BiocManager", repos = "https://cloud.r-project.org")
@@ -17,29 +37,73 @@ if(!"tidyr" %in% row.names(installed.packages())){
 if(!"tibble" %in% row.names(installed.packages())){
   install.packages("tibble", repos = "https://cloud.r-project.org")
 }
-if(!"BiocManager" %in% row.names(installed.packages())){
-  install.packages("BiocManager", repos = "https://cloud.r-project.org")
-  BiocManager::install(version = "3.13")
-  BiocManager::install("VariantAnnotation")
-}
 
 library(dplyr)
+library(plyranges)
 
 
 wd <- "~/expression_and_SNPs_to_clinic/"   # Update Path
 setwd(wd)
-### GATK Variants from DNA Seq
-dna_fn <- "dna_vcf.vcf"
-dna_seq_var <- VariantAnnotation::readVcf(paste0(wd,dna_fn))
 
-### GATK Variants from RNA Seq
-rna_fn <- "rna_vcf.vcf"
-rna_seq_var <- VariantAnnotation::readVcf(paste0(wd,rna_fn))
+### GATK Variants from DNA Seq
+dna_fn <- "OCinput.vcf.gz.vcf"
+system(
+  paste(wd,"clean_vcf.sh ", dna_fn, sep="")
+)
+dna_seq <- read.table(
+  paste0(wd,dna_fn,"_Clean.tsv"),
+  quote="", header=F, sep="\t"
+)
+
+### GATK Variants from RNA Seq File 1
+rna_fn_1 <- "rna_1_vcf.vcf"
+system(
+  paste(wd,"clean_vcf.sh ", rna_fn_1, sep="")
+)
+rna_seq_1 <- read.table(
+  paste0(wd,rna_fn_1,"_Clean.tsv"),
+  quote="", header=F, sep="\t"
+)
+
+### GATK Variants from RNA Seq File 1
+rna_fn_2 <- "rna_2_vcf.vcf"
+system(
+  paste(wd,"clean_vcf.sh ", rna_fn_2, sep="")
+)
+rna_seq_2 <- read.table(
+  paste0(wd,rna_fn_2,"_Clean.tsv"),
+  quote="", header=F, sep="\t"
+)
+
 
 ### Differential Expression (Tumor vs Normal)
 deg_fn
 deg_table
 
+######################### remove after testing ##################
+rna_seq_1 <- dna_seq[1:15,]
+rna_seq_2 <- dna_seq[5:20,]
+dna_seq <- dna_seq[10:25,]
+########################### Cleanup Column Headers ###########################
+var_table_headers <- function(var_table){
+  var_table %>%
+    select(
+      CHROM=V6,
+      POS=V10,
+      REF=V11,
+      ALT=V12,
+      HUGO_SYMBOL=V1,
+      TRANSCRIPT=V2,
+      SEQ_ONT=V3
+    ) %>%
+    mutate(
+      VAR_ID=paste0(CHROM,":",POS,"_",REF,"/",ALT)
+    )
+}
+
+dna_seq <- var_table_headers(dna_seq)
+rna_seq_1 <- var_table_headers(rna_seq_1)
+rna_seq_2 <- var_table_headers(rna_seq_2)
 ######################### Generate Unified Identifier Table ##################
 
 ### Table consists of the Union of all distinct mutations observed 
@@ -56,32 +120,13 @@ deg_table
 ###     Source (DNA,RNA,Both)
 ###     Source identifier / Tissue origin, if relevant (Essential)
 
-## Cleanup ALT due to bug in dataframe conversion
-dna_seq_mcl <- GenomicRanges::mcols(dna_seq_var)
-dna_seq_mcl$REF <- as.character(unstrsplit(dna_seq_mcl$REF))
-dna_seq_mcl$ALT <- as.character(unstrsplit(dna_seq_mcl$ALT))
+## CRV String Elements
 
-dna_seq <- as.data.frame(
-  dna_seq_mcl
-) %>%
-  tibble::rownames_to_column(var="mutation_id") %>%
-  select(
-    -paramRangeID
-  )
 
-## Cleanup ALT due to bug in dataframe conversion
-rna_seq_mcl <- GenomicRanges::mcols(rna_seq_var)
-rna_seq_mcl$REF <- as.character(unstrsplit(rna_seq_mcl$REF))
-rna_seq_mcl$ALT <- as.character(unstrsplit(rna_seq_mcl$ALT))
-
-rna_seq <- as.data.frame(
-  rna_seq_mcl
-) %>%
-  tibble::rownames_to_column(var="mutation_id") %>%
-  select(
-    -paramRangeID
-  )
-
+### Select Columns in Each VCF that represent a unique mutation (primary key)
+### Construct a union table of distinct mutation keys (or mutation/gene keys)
+## Collapse to distinct variants and use "Source" to
+## indicate which pipeline detected the variation (DNA, RNA, BOTH)
 variants <- bind_rows(
   dna_seq %>%
     mutate(Source = "DNA"),
@@ -95,10 +140,6 @@ variants <- bind_rows(
     Source=ifelse(n()==1, Source, "BOTH")
   ) %>% as.data.frame()
 
-
-### Select Columns in Each VCF that represent a unique mutation (primary key)
-
-### Construct a union table of distinct mutation keys (or mutation/gene keys)
 
 ### Join Genes and differential expression to mutations
 
