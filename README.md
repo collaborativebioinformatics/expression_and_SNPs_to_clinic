@@ -104,7 +104,7 @@ The screenshot of the RNAseq pipeline is too big! See the json file above.
 
 
 III.  CombineR
-A custom script that takes in two RNAseq VCFs, a DNAseq VCF, and differential expresssion file. The script starts with simple bash text manipulation commands like sed and grep to keep it simple. 
+A custom script that takes in two RNAseq VCFs, a DNAseq VCF, and differential expresssion file. The script starts with simple bash text manipulation commands like sed and grep to keep it simple. The CombineR script extracts a unique set of annotated variants	observed in three independent sequencing assays	from the same individual, one DNA Sequencing assay, and	two RNA	Sequencing Assays from different tissue	specimens. The	script integrates differential gene expression estimates reflecting the	difference in gene level transcript abundance for variants observed in each of the two RNA Sequencing samples.
 
 
 #### Outputs 
