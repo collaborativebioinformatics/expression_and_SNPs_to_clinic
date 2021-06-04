@@ -1,4 +1,5 @@
 
+
 # Expression and SNPs to clinic
 Smooth transition of called variants from RNAseq/DNAseq and expression to the clinic. 
 
@@ -122,6 +123,8 @@ It is important to present the final results cleanly. CombineR outputs a TSV-del
 
 <img width="1610" alt="Screen Shot 2021-06-04 at 12 41 42 PM" src="https://user-images.githubusercontent.com/8096975/120835455-56c94600-c532-11eb-8129-c0d05cca1b03.png">
 
+
+<img width="323" alt="Screen Shot 2021-06-04 at 1 26 08 PM" src="https://user-images.githubusercontent.com/8096975/120840698-909d4b00-c538-11eb-8a3d-bdeb228e227b.png">
 For use by https://github.com/collaborativebioinformatics/omics_to_omop 
 
 ## Flowchart
