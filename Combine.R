@@ -43,7 +43,7 @@ wd <- "~/expression_and_SNPs_to_clinic/"   # Update Path depending on system
 setwd(wd)
 
 ### GATK Variants from DNA Seq
-dna_fn <- "OCinput.vcf.gz.vcf"
+dna_fn <- "dna_test_file.vcf"
 system(
   paste(wd,"clean_vcf.sh ", dna_fn, sep="")
 )
@@ -54,24 +54,24 @@ dna_seq <- read.table(
   filter(V1 !="")
 
 ### GATK Variants from RNA Seq File 1
-# rna_fn_1 <- "rna_1_vcf.vcf"
-# system(
-#   paste(wd,"clean_vcf.sh ", rna_fn_1, sep="")
-# )
-# rna_seq_1 <- read.table(
-#   paste0(wd,rna_fn_1,"_Clean.tsv"),
-#   quote="", header=F, sep="\t"
-# )
+rna_fn_1 <- "rna_1_test_file.vcf"
+system(
+  paste(wd,"clean_vcf.sh ", rna_fn_1, sep="")
+)
+rna_seq_1 <- read.table(
+  paste0(wd,rna_fn_1,"_Clean.tsv"),
+  quote="", header=F, sep="\t"
+)
 
 ### GATK Variants from RNA Seq File 2
-# rna_fn_2 <- "rna_2_vcf.vcf"
-# system(
-#   paste(wd,"clean_vcf.sh ", rna_fn_2, sep="")
-# )
-# rna_seq_2 <- read.table(
-#   paste0(wd,rna_fn_2,"_Clean.tsv"),
-#   quote="", header=F, sep="\t"
-# )
+rna_fn_2 <- "rna_2_test_file.vcf"
+system(
+  paste(wd,"clean_vcf.sh ", rna_fn_2, sep="")
+)
+rna_seq_2 <- read.table(
+  paste0(wd,rna_fn_2,"_Clean.tsv"),
+  quote="", header=F, sep="\t"
+)
 
 
 ### Differential Expression (Tumor vs Normal)
@@ -81,7 +81,7 @@ deg_table <- read.table(deg_fn, sep="\t", header=T, quote="") %>%
 
 ######################### generate mock tables for testing ###################
 deg_table <-data.frame(
-  HUGO_SYMBOL=unique(dna_seq$V1)[1:25],
+  HUGO_SYMBOL=gsub("^$","FOOGENE", unique(c(dna_seq$V1, rna_seq_1$V1, rna_seq_2$V1)))[1:25],
   DE_FDR=deg_table$padj[1:25],
   DE_LOGFC=deg_table$log2FoldChange[1:25],
   DE_GROUP_1_AVG=(2*deg_table$baseMean[1:25])/(1+(2^deg_table$log2FoldChange[1:25])),
@@ -89,9 +89,9 @@ deg_table <-data.frame(
   DE_GROUP_1_LABEL="NORMAL",
   DE_GROUP_2_LABEL="TUMOR"
 )
-rna_seq_1 <- dna_seq[1:15,]
-rna_seq_2 <- dna_seq[6:20,]
-dna_seq <- dna_seq[11:25,]
+#rna_seq_1 <- dna_seq[1:15,]
+#rna_seq_2 <- dna_seq[6:20,]
+#dna_seq <- dna_seq[11:25,]
 ########################### Cleanup Column Headers ###########################
 var_table_headers <- function(var_table){
   var_table %>%
