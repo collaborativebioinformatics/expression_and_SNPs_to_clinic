@@ -215,8 +215,8 @@ combined <- combine_variants_deg(
   dna_seq, rna_seq_1, rna_seq_2, deg_table
 )
 write.table(
-  combined,
-  sep="\t", quote=F, col.names = F,
+  combined, row.names = F,
+  sep="\t", quote=F, col.names = T,
   file = "CombineR_Main_ResultSet.tsv"
 )
 
@@ -226,7 +226,7 @@ write.table(
     group_by(HUGO_SYMBOL) %>%
     summarize(DE_LOGFC=nth(DE_LOGFC,1), Variants=n()) %>%
     arrange(desc(abs(DE_LOGFC))) %>%
-    filter(row_number() <6),
-  sep="\t", quote=F, col.names = F,
-  file = "CombineR_Main_ResultSet.tsv"
+    filter(row_number() <6), row.names =F,
+  sep="\t", quote=F, col.names = T,
+  file = "CombineR_Top5_DE.tsv"
 )
