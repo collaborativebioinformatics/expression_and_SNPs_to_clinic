@@ -55,24 +55,24 @@ dna_seq <- read.table(
   filter(V1 !="")
 
 ### GATK Variants from RNA Seq File 1
-rna_fn_1 <- "rna_1_vcf.vcf"
-system(
-  paste(wd,"clean_vcf.sh ", rna_fn_1, sep="")
-)
-rna_seq_1 <- read.table(
-  paste0(wd,rna_fn_1,"_Clean.tsv"),
-  quote="", header=F, sep="\t"
-)
+# rna_fn_1 <- "rna_1_vcf.vcf"
+# system(
+#   paste(wd,"clean_vcf.sh ", rna_fn_1, sep="")
+# )
+# rna_seq_1 <- read.table(
+#   paste0(wd,rna_fn_1,"_Clean.tsv"),
+#   quote="", header=F, sep="\t"
+# )
 
-### GATK Variants from RNA Seq File 1
-rna_fn_2 <- "rna_2_vcf.vcf"
-system(
-  paste(wd,"clean_vcf.sh ", rna_fn_2, sep="")
-)
-rna_seq_2 <- read.table(
-  paste0(wd,rna_fn_2,"_Clean.tsv"),
-  quote="", header=F, sep="\t"
-)
+### GATK Variants from RNA Seq File 2
+# rna_fn_2 <- "rna_2_vcf.vcf"
+# system(
+#   paste(wd,"clean_vcf.sh ", rna_fn_2, sep="")
+# )
+# rna_seq_2 <- read.table(
+#   paste0(wd,rna_fn_2,"_Clean.tsv"),
+#   quote="", header=F, sep="\t"
+# )
 
 
 ### Differential Expression (Tumor vs Normal)
@@ -168,7 +168,7 @@ combine_variants_deg <- function(dna, rna1, rna2, deg, fdr.min=1){
       ),
       OBS_RNA_2=ifelse(
         grepl(
-          "RNA_1", paste(source, collapse=",")
+          "RNA_2", paste(source, collapse=",")
         ), 
         "YES", "NO"
       )
