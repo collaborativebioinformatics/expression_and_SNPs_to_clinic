@@ -38,7 +38,6 @@ if(!"tibble" %in% row.names(installed.packages())){
 }
 
 library(dplyr)
-library(plyranges)
 
 wd <- "~/expression_and_SNPs_to_clinic/"   # Update Path depending on system
 setwd(wd)
