@@ -83,6 +83,7 @@ deg_table <- read.table(deg_fn, sep="\t", header=T, quote="") %>%
 ######################### generate mock tables for testing ###################
 deg_table <-data.frame(
   HUGO_SYMBOL=unique(dna_seq$V1)[1:25],
+  DE_FDR=deg_table$padj[1:25],
   DE_LOGFC=deg_table$log2FoldChange[1:25],
   DE_GROUP_1_AVG=(2*deg_table$baseMean[1:25])/(1+(2^deg_table$log2FoldChange[1:25])),
   DE_GROUP_2_AVG=(2*deg_table$baseMean[1:25])/(1+(2^(0-deg_table$log2FoldChange[1:25]))),
@@ -139,7 +140,7 @@ rna_seq_2 <- var_table_headers(rna_seq_2)
 ### Construct a union table of distinct mutation keys (or mutation/gene keys)
 ## Collapse to distinct variants and use "Source" to
 ## indicate which pipeline detected the variation (DNA, RNA, BOTH)
-combine_variants_deg <- function(dna, rna1, rna2, deg){
+combine_variants_deg <- function(dna, rna1, rna2, deg, fdr.min=1){
   
   ## Collapse to unified set of variations, and report
   ## files where a mutation was observed
@@ -198,7 +199,7 @@ combine_variants_deg <- function(dna, rna1, rna2, deg){
   mut_annot_deg <- left_join(
     mut_annot,
     deg %>%
-      filter(padj < 0.05) %>%               # Significance filter 
+      filter(DE_FDR < fdr.min) %>%               # Significance filter 
       group_by(HUGO_SYMBOL) %>%
       filter(
         abs(DE_LOGFC)==max(abs(DE_LOGFC))   # De-Duplicate by fold change
@@ -209,34 +210,23 @@ combine_variants_deg <- function(dna, rna1, rna2, deg){
   return(mut_annot_deg)
 }
 
-### Generate Results Set
+### Save Primary Results Set:
+combined <- combine_variants_deg(
+  dna_seq, rna_seq_1, rna_seq_2, deg_table
+)
+write.table(
+  combined,
+  sep="\t", quote=F, col.names = F,
+  file = "CombineR_Main_ResultSet.tsv"
+)
 
-
-################ MOCKUP FOR SCREENSHOTS ###########################
-# dna_seq_check %>%
-#   filter(HUGO_SYMBOL=="SAMD11") %>%
-#   mutate(
-#     OBSERVED_IN_DNA=c(
-#       "YES", "YES", "NO", "NO", "NO", "YES", "NO", "NO"
-#     ),
-#     OBSERVED_IN_RNA_1=c(
-#       "YES", "NO", "NO", "YES", "NO", "YES", "NO", "NO"
-#     ),
-#     OBSERVED_IN_RNA_2=c(
-#       "YES", "NO", "NO", "NO", "NO", "YES", "NO", "NO"
-#     ),
-#     COSMIC_ID=c("COSV52316050"),
-#     ZYGOSITY=c("het", "het", "hom", "hom", "hom", "hom", "hom", "hom"),
-#     DE_LOG_FC=10.5,
-#     DE_FDR=0.05
-#   )
-# 
-# top_five=data.frame(
-#   HUGO_SYMBOL=c("RUNX1", "SAMD11", "TP53", "ATF4", "EGR1"),
-#   FOLD_CHANGE=c(12, 10.5, -8, 6, 5),
-#   MUTATION_COUNT=c(3,8, 15, 2, 1)
-# )
-
-
-
-
+### Save Secondary Results Set:
+write.table(
+  combined %>%
+    group_by(HUGO_SYMBOL) %>%
+    summarize(DE_LOGFC=nth(DE_LOGFC,1), Variants=n()) %>%
+    arrange(desc(abs(DE_LOGFC))) %>%
+    filter(row_number() <6),
+  sep="\t", quote=F, col.names = F,
+  file = "CombineR_Main_ResultSet.tsv"
+)
