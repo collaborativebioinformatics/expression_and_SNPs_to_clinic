@@ -39,7 +39,7 @@ if(!"tibble" %in% row.names(installed.packages())){
 
 library(dplyr)
 
-wd <- "~/expression_and_SNPs_to_clinic/"   # Update Path depending on system
+wd <- "/opt/notebooks/expression_and_SNPs_to_clinic/"   # Update Path depending on system
 setwd(wd)
 
 ### GATK Variants from DNA Seq
@@ -49,8 +49,9 @@ system(
 )
 dna_seq <- read.table(
   paste0(wd,dna_fn,"_Clean.tsv"),
-  quote="", header=F, sep="\t"
-) 
+  quote="", header=F, sep="\t",
+  stringsAsFactors=F
+)
 
 ### GATK Variants from RNA Seq File 1
 rna_fn_1 <- "rna_1_test_file.vcf"
@@ -59,7 +60,8 @@ system(
 )
 rna_seq_1 <- read.table(
   paste0(wd,rna_fn_1,"_Clean.tsv"),
-  quote="", header=F, sep="\t"
+  quote="", header=F, sep="\t",
+  stringsAsFactors=F
 )
 
 ### GATK Variants from RNA Seq File 2
@@ -69,7 +71,8 @@ system(
 )
 rna_seq_2 <- read.table(
   paste0(wd,rna_fn_2,"_Clean.tsv"),
-  quote="", header=F, sep="\t"
+  quote="", header=F, sep="\t",
+  stringsAsFactors=F
 )
 
 
@@ -86,7 +89,8 @@ deg_table <-data.frame(
   DE_GROUP_1_AVG=(2*deg_table$baseMean[1:25])/(1+(2^deg_table$log2FoldChange[1:25])),
   DE_GROUP_2_AVG=(2*deg_table$baseMean[1:25])/(1+(2^(0-deg_table$log2FoldChange[1:25]))),
   DE_GROUP_1_LABEL="NORMAL",
-  DE_GROUP_2_LABEL="TUMOR"
+  DE_GROUP_2_LABEL="TUMOR",
+  stringsAsFactors=F
 )
 #rna_seq_1 <- dna_seq[1:15,]
 #rna_seq_2 <- dna_seq[6:20,]
