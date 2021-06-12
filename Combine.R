@@ -50,8 +50,7 @@ system(
 dna_seq <- read.table(
   paste0(wd,dna_fn,"_Clean.tsv"),
   quote="", header=F, sep="\t"
-) %>%
-  filter(V1 !="")
+) 
 
 ### GATK Variants from RNA Seq File 1
 rna_fn_1 <- "rna_1_test_file.vcf"
