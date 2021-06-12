@@ -2,8 +2,8 @@
 # Purpose: Integrate results from Variant Calling and Differential Expression
 #          workflows into a unified tsv file for each sample.
 #          
-# Usage:   Receives paths to four files as command line arguments:
-#          Rscript Combine.R <DNA Path> <RNA_1 Path> <RNA_2 Path> <DEG Path>
+# Usage: Receives paths to four files as command line arguments:
+#        Rscript Combine.R --args <DNA Path> <RNA_1 Path> <RNA_2 Path> <DEG Path>
 #          
 #              
 #          
@@ -41,9 +41,12 @@ library(dplyr)
 
 wd <- "/opt/notebooks/expression_and_SNPs_to_clinic/"   # Update Path depending on system
 setwd(wd)
+args <- commandArgs(trailingOnly=T)
 
 ### GATK Variants from DNA Seq
-dna_fn <- "dna_test_file.vcf"
+#dna_fn <- "dna_test_file.vcf"
+dna_fn <- args[2]
+print(dna_fn)
 system(
   paste(wd,"clean_vcf.sh ", dna_fn, sep="")
 )
@@ -54,7 +57,8 @@ dna_seq <- read.table(
 )
 
 ### GATK Variants from RNA Seq File 1
-rna_fn_1 <- "rna_1_test_file.vcf"
+#rna_fn_1 <- "rna_1_test_file.vcf"
+rna_fn_1 <- args[3]
 system(
   paste(wd,"clean_vcf.sh ", rna_fn_1, sep="")
 )
@@ -65,7 +69,8 @@ rna_seq_1 <- read.table(
 )
 
 ### GATK Variants from RNA Seq File 2
-rna_fn_2 <- "rna_2_test_file.vcf"
+#rna_fn_2 <- "rna_2_test_file.vcf"
+rna_fn_2 <- args[4]
 system(
   paste(wd,"clean_vcf.sh ", rna_fn_2, sep="")
 )
@@ -77,7 +82,8 @@ rna_seq_2 <- read.table(
 
 
 ### Differential Expression (Tumor vs Normal)
-deg_fn <- "Group1_vs_Group2.allGenes.csv"
+#deg_fn <- "Group1_vs_Group2.allGenes.csv"
+deg_fn <- args[5]
 deg_table <- read.table(deg_fn, sep="\t", header=T, quote="") %>%
   filter(!is.na(padj))
 
